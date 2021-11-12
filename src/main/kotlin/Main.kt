@@ -38,11 +38,11 @@ class Modulo(var numeroDeAlumnos:Int=15, maxAlumnos:Int=20){
         // el predicado es it donde la id de la clase alumno sea igual al idAlumno de esta clase
 
 
-        var ev1 = notas[notasDelAlumno][0]
-        var ev2 = notas[notasDelAlumno][1]
-        var ev3 = notas[notasDelAlumno][2]
-      var ev_final = (ev1 + ev2 + ev3) /3
-            ev_final= notas[notasDelAlumno][3]
+         var ev1 = notas[notasDelAlumno][0]
+         var ev2 = notas[notasDelAlumno][1]
+         var ev3 = notas[notasDelAlumno][2]
+         var ev_final = (ev1 + ev2 + ev3) /3
+         ev_final= notas[notasDelAlumno][3]
 
 
 
