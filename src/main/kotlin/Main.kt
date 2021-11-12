@@ -63,19 +63,23 @@ class Modulo(var numeroDeAlumnos:Int=15, maxAlumnos:Int=20){
     }
     fun notaMasBaja(evaluacion:String): Float{
 
-      var evaluacion = notas.minOf {  }
+      var evaluacion = notas.min()
+      return (evaluacion)
 
 
     }
     /*
     fun notaMasAlta(evaluacion:String): Float{
 
-        // var max = array.max
-        var evaluacion =
+   // val evaluacion = intArrayOf(6, 2, 9, 7, 1)
+    var evaluacion = notas.max()
+    return(evaluacion)
     }
+    
     fun notaMedia(evaluacion:String): Float{
 
-        var evaluacion =array.average(notas)
+        var evaluacion =notas.average()
+        return(evaluacion)
 
     }
     fun hayAlumnosConDiez(evaluacion:String): Boolean{}
