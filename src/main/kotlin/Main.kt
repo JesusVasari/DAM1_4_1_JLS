@@ -63,7 +63,7 @@ class Modulo(var numeroDeAlumnos:Int=15, maxAlumnos:Int=20){
     }
     fun notaMasBaja(evaluacion:String): Float{
 
-      var evaluacion = notas.min()
+      var evaluacion = notas.minOf { it[evaluacion.Float()] }
       return (evaluacion)
 
 
@@ -71,15 +71,16 @@ class Modulo(var numeroDeAlumnos:Int=15, maxAlumnos:Int=20){
     /*
     fun notaMasAlta(evaluacion:String): Float{
 
-   // val evaluacion = intArrayOf(6, 2, 9, 7, 1)
-    var evaluacion = notas.max()
+
+    var evaluacion = notas.maxOf { it[evaluacion.toFloat()] }
     return(evaluacion)
     }
     
     fun notaMedia(evaluacion:String): Float{
 
-        var evaluacion =notas.average()
-        return(evaluacion)
+         var notaMedia = notas[evaluacion.toInt()].average().toFloat()
+
+        return notaMedia
 
     }
     fun hayAlumnosConDiez(evaluacion:String): Boolean{}
@@ -102,6 +103,19 @@ data class Alumno(val id:String="", val nombre:String = " ", var ap1:String="", 
 
 fun main(args: Array<String>) {
 
+    
+        var alumno1 = Alumno("0", "Juan", "Cuesta", "Gil")
+        var alumno2 = Alumno("1", "Belén", "López", "Vazquez")
+        var alumno3 = Alumno("2", "Vicenta", "Benito", "Gil")
+        var alumno4 = Alumno("3", "Marisa", "Benito", "Navarro")
+        var alumno5 = Alumno("4", "Natalia", "Cuesta", "Hurtado")
+        var alumno6 = Alumno("5", "Fernando", "Tejero", "Delgado")
+        var alumno7 = Alumno("6", "Andrés", "Guerra", "Romero")
+        var alumno8 = Alumno("7", "Isabel", "Ruíz", "Ordaz")
+        var alumno9 = Alumno("8", "Roberto", "Alonso", "Castillo")
+        var alumno10 = Alumno("9", "Fernando", "Navarro", "Collado")
+    
+    
    var m:Modulo = Modulo(15)
     m.establecerNotas("12",Modulo.EV_PRI,2.3)
 
