@@ -89,7 +89,17 @@ class Modulo(var numeroDeAlumnos:Int=15, maxAlumnos:Int=20){
     fun hayAlumnosAprobados(evaluacion:String): Boolean{}
     fun primeraNotaNoAprobada(evaluacion:String): Float{}
     fun listaNotasOrdenados(evaluacion:String): List<Pair>{}
+    
+    var ordenado = arrayListof()
+                        //<pair>
+         ordenado.forEach { it
+         println (it)   
+         }
+    
     fun matricularAlumno(alumno:Alumno): Boolean{}
+    
+    
+    
   fun bajaAlumno(idAlumno:String): Boolean{}
     }
 */
