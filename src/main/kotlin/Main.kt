@@ -65,8 +65,8 @@ class Modulo(var numeroDeAlumnos:Int=15, maxAlumnos:Int=20){
 
       var evaluacion = notas.minOf { it[evaluacion.Float()] }
       return (evaluacion)
-
-
+    // var minimo = notasAlumnos [evaluacion.toInt()].minByOrNull {it}
+    //return (minimo)                                  //.min or .minOf
     }
     /*
     fun notaMasAlta(evaluacion:String): Float{
@@ -74,11 +74,13 @@ class Modulo(var numeroDeAlumnos:Int=15, maxAlumnos:Int=20){
 
     var evaluacion = notas.maxOf { it[evaluacion.toFloat()] }
     return(evaluacion)
+ // var maximo = notasAlumnos [evaluacion.toInt()].minByOrNull {it}
+    return (maximo)                             //.max or .maxOf
     }
     
     fun notaMedia(evaluacion:String): Float{
 
-         var notaMedia = notas[evaluacion.toInt()].average().toFloat()
+        var notaMedia = notas[evaluacion.toInt()].average().toFloat()
 
         return notaMedia
 
