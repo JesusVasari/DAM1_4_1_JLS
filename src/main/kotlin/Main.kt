@@ -45,10 +45,10 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
     }
 
 
-    fun listaNotas(evaluacion: String): List<pair> {
+    fun listaNotas(evaluacion: String): List<Pair<String,Float>> {
 
-        var ordenado = arrayListOf(numeroDeAlumnos)
-        //<pair>
+        var ordenado = arrayListOf(notas)
+
         ordenado.forEach { it }
         println(ordenado)
     }
@@ -56,25 +56,20 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
 
     fun numeroAprobados(evaluacion: String): Int {
 
-
-        var evaluacion = notas.filter { it.count < 6 }
-
-        return
+        var evaluacion = notas[evaluacion.toInt()]
+        var aprobados = evaluacion.count {it >=5.0f}
+        return (aprobados)
     }
 
     fun notaMasBaja(evaluacion: String): Float {
-
-
         var minimo = notas.minOf { it[evaluacion.toInt()] }
-
-
-        return (minimo)                                  //.min or .minOf
+        return (minimo)
     }
 
     fun notaMasAlta(evaluacion: String): Float {
 
         var maximo = notas.maxOf { it[evaluacion.toInt()] }
-        return (maximo)                             //.max or .maxOf
+        return (maximo)
     }
 
     fun notaMedia(evaluacion: String): Float {
@@ -85,15 +80,26 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
 
     }
 
-    fun hayAlumnosConDiez(evaluacion: String): Boolean {}
+    fun hayAlumnosConDiez(evaluacion: String): Boolean {
+        var evaluacion = notas[evaluacion.toInt()]
+        var aprobados = evaluacion.count { it == 10.0f }
+        return true
+    }
+    fun hayAlumnosAprobados(evaluacion: String): Boolean {
+        var evaluacion = notas[evaluacion.toInt()]
+        var aprobados = evaluacion.count {it ==5.0f}
+        return true
+    }
+    fun primeraNotaNoAprobada(evaluacion: String): Float {
 
-    //  .filter {it 10}
-    fun hayAlumnosAprobados(evaluacion: String): Boolean {}
-    fun primeraNotaNoAprobada(evaluacion: String): Float {}
-    fun listaNotasOrdenados(evaluacion: String): List<Pair> {}
 
+    }
+    fun listaNotasOrdenados(evaluacion: String): List<Pair<String,Float>> {
 
+        var ordenado = matriculados.sort()
+    }
     fun matricularAlumno(alumno: Alumno): Boolean {}
+
 
 
     fun bajaAlumno(idAlumno: String): Boolean {}
@@ -123,7 +129,17 @@ fun main(args: Array<String>) {
 
 
     var m: Modulo = Modulo(15)
-    m.establecerNota("12", Modulo.EV_PRI, 2.3)
+    m.establecerNota("0", Modulo.EV_PRI, 6 )
+    m.establecerNota("1","")
+    m.establecerNota("2", Modulo.EV_PRI, nota = 5)
+    m.establecerNota("3")
+    m.establecerNota("4")
+    m.establecerNota("5")
+    m.establecerNota("6")
+    m.establecerNota("7")
+    m.establecerNota("8")
+    m.establecerNota("9")
 
+    m.notaMasAlta()
 
 }
