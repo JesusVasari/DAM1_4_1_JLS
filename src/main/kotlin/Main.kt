@@ -11,7 +11,7 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
         const val EV_FIN = "3"
     }
 
-    private var notas = Array(4)
+    var notas = Array(4)
     { FloatArray(numeroDeAlumnos) { -1.0F } }
 
 
@@ -91,18 +91,25 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
         return true
     }
     fun primeraNotaNoAprobada(evaluacion: String): Float {
-
+        var evaluacion = notas[evaluacion.toInt()]
+        var aprobados = evaluacion.first({it ==5.0f})
 
     }
     fun listaNotasOrdenados(evaluacion: String): List<Pair<String,Float>> {
 
         var ordenado = matriculados.sort()
     }
-    fun matricularAlumno(alumno: Alumno): Boolean {}
+    fun matricularAlumno(alumno: Alumno): Boolean {
 
+      var matricula = notas.toMutableList()
+        matricula.add()
+    }
 
+    fun bajaAlumno(idAlumno: String): Boolean {
 
-    fun bajaAlumno(idAlumno: String): Boolean {}
+        var matricula = notas.toMutableList()
+        matricula.removeAt(Modulo)
+    }
 
 
 }
@@ -129,17 +136,18 @@ fun main(args: Array<String>) {
 
 
     var m: Modulo = Modulo(15)
-    m.establecerNota("0", Modulo.EV_PRI, 6 )
-    m.establecerNota("1","")
-    m.establecerNota("2", Modulo.EV_PRI, nota = 5)
-    m.establecerNota("3")
-    m.establecerNota("4")
-    m.establecerNota("5")
-    m.establecerNota("6")
-    m.establecerNota("7")
-    m.establecerNota("8")
-    m.establecerNota("9")
+    m.establecerNota("0", Modulo.EV_PRI, 6.0f )
+    m.establecerNota("1", Modulo.EV_PRI, nota = 7.3f)
+    m.establecerNota("2", Modulo.EV_PRI, nota = 5.7f)
+    m.establecerNota("3", Modulo.EV_PRI, nota = 10.0f)
+    m.establecerNota("4", Modulo.EV_PRI, nota = 8.56F)
+    m.establecerNota("5", Modulo.EV_PRI, nota = 6.4f)
+    m.establecerNota("6", Modulo.EV_PRI, nota = 4.9F)
+    m.establecerNota("7", Modulo.EV_PRI, nota = 5.7F)
+    m.establecerNota("8", Modulo.EV_PRI, nota = 4.8F)
+    m.establecerNota("9", Modulo.EV_PRI, nota = 5.8F)
 
-    m.notaMasAlta()
+    m.notaMasAlta("")
+
 
 }
