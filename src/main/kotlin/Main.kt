@@ -45,7 +45,7 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
     }
 
 
-    fun listaNotas(evaluacion: String): List<Pair<String,Float>> {
+    fun listaNotas(evaluacion: String) {
 
         var ordenado = arrayListOf(notas)
 
@@ -92,23 +92,30 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
     }
     fun primeraNotaNoAprobada(evaluacion: String): Float {
         var evaluacion = notas[evaluacion.toInt()]
-        var aprobados = evaluacion.first({it ==5.0f})
-
+        var aprobados = evaluacion.first {it ==5.0f}
+        return aprobados
     }
     fun listaNotasOrdenados(evaluacion: String): List<Pair<String,Float>> {
 
-        var ordenado = matriculados.sort()
+        var ordenado =notas.sort()
+        return (matriculado)
     }
     fun matricularAlumno(alumno: Alumno): Boolean {
 
-      var matricula = notas.toMutableList()
-        matricula.add()
+        matriculados[0]=Alumno()
+     var i = 0
+        while ((i < matriculados.size - 1) && (matriculados[i] !=null)){
+        i ++}
+        return false
     }
 
     fun bajaAlumno(idAlumno: String): Boolean {
 
-        var matricula = notas.toMutableList()
-        matricula.removeAt(Modulo)
+        matriculados[0]=Alumno()
+        var i = 0
+        while ((i < matriculados.size - 1) && (matriculados[i] !=null)){
+            i --}
+        return false
     }
 
 
@@ -135,19 +142,31 @@ fun main(args: Array<String>) {
     var alumno10 = Alumno("9", "Fernando", "Navarro", "Collado")
 
 
+
     var m: Modulo = Modulo(15)
     m.establecerNota("0", Modulo.EV_PRI, 6.0f )
-    m.establecerNota("1", Modulo.EV_PRI, nota = 7.3f)
-    m.establecerNota("2", Modulo.EV_PRI, nota = 5.7f)
-    m.establecerNota("3", Modulo.EV_PRI, nota = 10.0f)
-    m.establecerNota("4", Modulo.EV_PRI, nota = 8.56F)
-    m.establecerNota("5", Modulo.EV_PRI, nota = 6.4f)
-    m.establecerNota("6", Modulo.EV_PRI, nota = 4.9F)
-    m.establecerNota("7", Modulo.EV_PRI, nota = 5.7F)
-    m.establecerNota("8", Modulo.EV_PRI, nota = 4.8F)
-    m.establecerNota("9", Modulo.EV_PRI, nota = 5.8F)
-
-    m.notaMasAlta("")
+    m.establecerNota("1", Modulo.EV_PRI,  7.3f)
+    m.establecerNota("2", Modulo.EV_PRI,  5.7f)
+    m.establecerNota("3", Modulo.EV_PRI,  10.0f)
+    m.establecerNota("4", Modulo.EV_PRI,  8.56F)
+    m.establecerNota("5", Modulo.EV_PRI,  6.4f)
+    m.establecerNota("6", Modulo.EV_PRI, 4.9F)
+    m.establecerNota("7", Modulo.EV_PRI,  5.7F)
+    m.establecerNota("8", Modulo.EV_PRI,  4.8F)
+    m.establecerNota("9", Modulo.EV_PRI,  5.8F)
 
 
+
+    m.matricularAlumno(alumno10)
+    m.matricularAlumno(alumno1)
+    m.matricularAlumno(alumno2)
+    m.matricularAlumno(alumno3)
+    m.matricularAlumno(alumno4)
+    m.matricularAlumno(alumno5)
+    m.matricularAlumno(alumno6)
+    m.matricularAlumno(alumno7)
+    m.matricularAlumno(alumno8)
+    m.matricularAlumno(alumno9)
+
+    m.notaMasAlta()
 }
