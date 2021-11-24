@@ -1,3 +1,6 @@
+import Modulo.Companion.EV_PRI
+import jdk.nashorn.internal.runtime.Debug.id
+
 class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
 
     //array de nulos de tipo clase Alumno y se mete la var numero de Alumnos
@@ -28,7 +31,6 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
         }
     }
 
-
     fun calculaEvaluacionFinal(idAlumno: String) {
         var notasDelAlumno = matriculados.indexOfFirst { it?.id.equals(idAlumno) }
         // la variable es igual a matriculados por el índice empezando el primero
@@ -40,71 +42,56 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
         var ev3 = notas[notasDelAlumno][2]
         var ev_final = (ev1 + ev2 + ev3) / 3
         ev_final = notas[notasDelAlumno][3]
-
-
     }
-
 
     fun listaNotas(evaluacion: String) {
 
-        var ordenado = arrayListOf(notas)
-
-        ordenado.forEach { it }
-        println(ordenado)
+        var evaluacion = arrayListOf(notas).forEach { it }
+        return evaluacion
     }
-
 
     fun numeroAprobados(evaluacion: String): Int {
 
-        var evaluacion = notas[evaluacion.toInt()]
-        var aprobados = evaluacion.count { it >= 5.0f }
-        return (aprobados)
+        var evaluacion = notas[evaluacion.toInt()].count { it >= 5.0f }
+        return evaluacion
     }
 
     fun notaMasBaja(evaluacion: String): Float {
-        var minimo = notas.minOf { it[evaluacion.toInt()] }
-        return (minimo)
+        var evaluacion = notas.minOf { it[evaluacion.toInt()] }
+        return (evaluacion)
     }
 
     fun notaMasAlta(evaluacion: String): Float {
 
-        var maximo = notas.maxOf { it[evaluacion.toInt()] }
-        return (maximo)
+        var evaluacion = notas.maxOf { it[evaluacion.toInt()] }
+        return (evaluacion)
     }
 
     fun notaMedia(evaluacion: String): Float {
 
-        var notaMedia = notas[evaluacion.toInt()].average().toFloat()
-
-        return notaMedia
-
+        var evaluacion = notas[evaluacion.toInt()].average().toFloat()
+        return evaluacion
     }
 
     fun hayAlumnosConDiez(evaluacion: String): Boolean {
-        var evaluacion = notas[evaluacion.toInt()]
-        var aprobados = evaluacion.count { it == 10.0f }
+        var evaluacion = notas[evaluacion.toInt()].count { it == 10.0f }
         return true
     }
 
     fun hayAlumnosAprobados(evaluacion: String): Boolean {
-        var evaluacion = notas[evaluacion.toInt()]
-        var aprobados = evaluacion.count { it == 5.0f }
+        var evaluacion = notas[evaluacion.toInt()].count { it == 5.0f }
         return true
     }
 
     fun primeraNotaNoAprobada(evaluacion: String): Float {
-        var evaluacion = notas[evaluacion.toInt()]
-        var aprobados = evaluacion.first { it == 5.0f }
-        return aprobados
+        var evaluacion = notas[evaluacion.toInt()].first { it < 5.0f }
+        return evaluacion
     }
-
-    /*
-        fun listaNotasOrdenados(evaluacion: String): List<Pair<String, Float>> {
-
-            var ordenado = notas.sort()
-      //      return (matriculado)
-        }
-    */
+/*
+    fun listaNotasOrdenados(evaluacion: String): List<Pair<String, Float>> {
+        var evaluacion = notas.sort().toString()
+    }
+*/
     fun matricularAlumno(alumno: Alumno): Boolean {
 
         var pos = 0
@@ -115,31 +102,28 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
             pos++
         }
 
-        if (pos <matriculados.size -1) {
-
-            matriculados.set(pos,alumno)
+        if (pos < matriculados.size - 1) {
+            matriculados.set(pos, alumno)
+            // matriculados[pos] =alumno // Es igual
+            matriculado = true
         }
 
         return matriculado
     }
 
     fun bajaAlumno(idAlumno: String): Boolean {
+        var pos = 0
+        var baja = false
+        var borrado = false
 
-
-        var pos = 15
-        var matriculado = false
-
-        //Buscar la posicion en la que insertar el alumno
-        while ((pos < matriculados.size - 1) && (matriculados[pos] != null)) {
-            pos--
+        while (pos < matriculados.size && !borrado) {
+            pos++
+            if (matriculados[pos]?.id == idAlumno) {
+                matriculados[pos] = null
+                borrado = true
+            }
         }
-
-        if (pos <matriculados.size -1) {
-
-           matriculados.set(pos, Alumno?)
-        }
-
-        return matriculado
+        return borrado
     }
 
 
@@ -180,6 +164,29 @@ fun main(args: Array<String>) {
     m.establecerNota("8", Modulo.EV_PRI, 4.8F)
     m.establecerNota("9", Modulo.EV_PRI, 5.8F)
 
+    m.establecerNota("0", Modulo.EV_SEG, 5.0f)
+    m.establecerNota("1", Modulo.EV_SEG, 8.3f)
+    m.establecerNota("2", Modulo.EV_SEG, 9.7f)
+    m.establecerNota("3", Modulo.EV_SEG, 10.0f)
+    m.establecerNota("4", Modulo.EV_SEG, 2.56F)
+    m.establecerNota("5", Modulo.EV_SEG, 1.4f)
+    m.establecerNota("6", Modulo.EV_SEG, 0.9F)
+    m.establecerNota("7", Modulo.EV_SEG, 7.7F)
+    m.establecerNota("8", Modulo.EV_SEG, 5.8F)
+    m.establecerNota("9", Modulo.EV_SEG, 5.8F)
 
-  m.notaMedia()
+    m.establecerNota("0", Modulo.EV_TER, 9.0f)
+    m.establecerNota("1", Modulo.EV_TER, 8.3f)
+    m.establecerNota("2", Modulo.EV_TER, 7.7f)
+    m.establecerNota("3", Modulo.EV_TER, 6.0f)
+    m.establecerNota("4", Modulo.EV_TER, 5.56F)
+    m.establecerNota("5", Modulo.EV_TER, 4.4f)
+    m.establecerNota("6", Modulo.EV_TER, 3.9F)
+    m.establecerNota("7", Modulo.EV_TER, 2.7F)
+    m.establecerNota("8", Modulo.EV_TER, 1.8F)
+    m.establecerNota("9", Modulo.EV_TER, 0.8F)
+
+
+    m.listaNotas("")
+
 }
