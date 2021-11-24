@@ -1,7 +1,6 @@
-import Modulo.Companion.EV_PRI
-import jdk.nashorn.internal.runtime.Debug.id
 
-class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
+
+class Modulo(var numeroDeAlumnos: Int = 15) {
 
     //array de nulos de tipo clase Alumno y se mete la var numero de Alumnos
     var matriculados = arrayOfNulls<Alumno>(numeroDeAlumnos) // numero de alumnos matriculados
@@ -20,7 +19,7 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
 
     fun establecerNota(idAlumno: String, evaluacion: String, nota: Float) {
         if (evaluacion in EV_PRI..EV_FIN) {
-            var pos = matriculados.indexOfFirst { it?.id.equals(idAlumno) }
+            val pos = matriculados.indexOfFirst { it?.id.equals(idAlumno) }
             //la pos es igual a la var matriculados y por cada $indice desde el primero
             //predicado: it ? de id de la clase alumno es igual a la var idAlumno de esta clase
             if (pos > 0) {
@@ -32,54 +31,54 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
     }
 
     fun calculaEvaluacionFinal(idAlumno: String) {
-        var notasDelAlumno = matriculados.indexOfFirst { it?.id.equals(idAlumno) }
+        val notasDelAlumno = matriculados.indexOfFirst { it?.id.equals(idAlumno) }
         // la variable es igual a matriculados por el índice empezando el primero
         // el predicado es it donde la id de la clase alumno sea igual al idAlumno de esta clase
 
 
-        var ev1 = notas[notasDelAlumno][0]
-        var ev2 = notas[notasDelAlumno][1]
-        var ev3 = notas[notasDelAlumno][2]
-        var ev_final = (ev1 + ev2 + ev3) / 3
-        ev_final = notas[notasDelAlumno][3]
+        val ev1 = notas[notasDelAlumno][0]
+        val ev2 = notas[notasDelAlumno][1]
+        val ev3 = notas[notasDelAlumno][2]
+        val ev_final = (ev1 + ev2 + ev3) / 3
+
     }
+/*
+    fun listaNotas(): List<Pair<String,Float>>{
 
-    fun listaNotas(evaluacion: String) {
-
-        var evaluacion = arrayListOf(notas).forEach { it }
-        return evaluacion
+       var  evaluacion = arrayListOf(notas).forEach { it }
+      //  return <Pair<>>
     }
-
+*/
     fun numeroAprobados(evaluacion: String): Int {
 
-        var evaluacion = notas[evaluacion.toInt()].count { it >= 5.0f }
-        return evaluacion
+       notas[evaluacion.toInt()].count { it >= 5.0f }.toString()
+        return evaluacion.toInt()
     }
 
     fun notaMasBaja(evaluacion: String): Float {
-        var evaluacion = notas.minOf { it[evaluacion.toInt()] }
-        return (evaluacion)
+        val evaluacion = notas.minOf { it[evaluacion.toInt()] }.toString()
+        return evaluacion.toFloat()
     }
 
     fun notaMasAlta(evaluacion: String): Float {
 
-        var evaluacion = notas.maxOf { it[evaluacion.toInt()] }
-        return (evaluacion)
+        val evaluacion = notas.maxOf { it[evaluacion.toInt()] }
+        return evaluacion.toFloat()
     }
 
     fun notaMedia(evaluacion: String): Float {
 
-        var evaluacion = notas[evaluacion.toInt()].average().toFloat()
-        return evaluacion
+        val evaluacion = notas[evaluacion.toInt()].average().toFloat()
+        return evaluacion.toFloat()
     }
 
     fun hayAlumnosConDiez(evaluacion: String): Boolean {
-        var evaluacion = notas[evaluacion.toInt()].count { it == 10.0f }
+        val evaluacion = notas[evaluacion.toInt()].count { it == 10.0f }
         return true
     }
 
     fun hayAlumnosAprobados(evaluacion: String): Boolean {
-        var evaluacion = notas[evaluacion.toInt()].count { it == 5.0f }
+       var evaluacion = notas[evaluacion.toInt()].count { it == 5.0f }
         return true
     }
 
@@ -113,7 +112,7 @@ class Modulo(var numeroDeAlumnos: Int = 15, maxAlumnos: Int = 20) {
 
     fun bajaAlumno(idAlumno: String): Boolean {
         var pos = 0
-        var baja = false
+
         var borrado = false
 
         while (pos < matriculados.size && !borrado) {
@@ -187,6 +186,6 @@ fun main(args: Array<String>) {
     m.establecerNota("9", Modulo.EV_TER, 0.8F)
 
 
-    m.listaNotas("")
+    m.notaMasAlta(EVA_PRI)
 
 }
